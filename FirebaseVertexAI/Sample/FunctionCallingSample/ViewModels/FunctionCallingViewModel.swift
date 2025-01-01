@@ -255,10 +255,9 @@ private extension FunctionResponse {
 
 private extension [FunctionResponse] {
   func modelContent() -> [ModelContent] {
-    return self.map { ModelContent(
+    [ModelContent(
       role: "function",
-      parts: [ModelContent.Part.functionResponse($0)]
-    )
-    }
+      parts: self.map { ModelContent.Part.functionResponse($0) }
+    )]
   }
 }
